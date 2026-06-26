@@ -1,75 +1,149 @@
-# React + TypeScript + Vite
+# React Vite Enterprise Starter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Starter template for building scalable React applications with a feature-based modular architecture.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19
+- Vite
+- TypeScript
+- Tailwind CSS 4
+- React Router
+- TanStack React Query
+- Axios
+- Zustand
+- shadcn/ui-style component primitives
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Install dependencies:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Create a local environment file:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+cp .env.example .env
 ```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+Build for production:
+
+```bash
+npm run build
+```
+
+Run lint:
+
+```bash
+npm run lint
+```
+
+Preview production build:
+
+```bash
+npm run preview
+```
+
+## Project Structure
+
+```txt
+src/
+  app/          Application bootstrap, router, providers, route guards
+  assets/       Shared static assets
+  components/   Reusable UI and common application components
+  constants/    App-wide constants
+  features/     Feature modules and business capabilities
+  hooks/        Shared reusable hooks
+  layouts/      Route layouts and page shells
+  lib/          Third-party library wrappers and configuration
+  stores/       Global Zustand stores
+  styles/       Global styles and Tailwind entry
+  types/        Shared TypeScript types
+  utils/        Shared pure utilities
+```
+
+See [ARCHITECTURE.md](./ARCHITECTURE.md) for the full architecture rules.
+
+## Architecture Principles
+
+- Feature-based modular architecture
+- Clean Architecture-inspired boundaries
+- Low coupling and high cohesion
+- Public API exports through `index.ts`
+- React Query for server state
+- Zustand for client state
+- Axios instance centralized in `src/lib/axios.ts`
+- Shared primitives in `src/components/ui`
+- Feature-specific code stays inside `src/features`
+
+## Import Alias
+
+Use the `@/` alias for source imports:
+
+```ts
+import { Button } from '@/components/ui'
+import { ROUTES } from '@/constants/routes'
+import { apiClient } from '@/lib/axios'
+```
+
+Avoid deep relative imports across modules.
+
+## Environment Variables
+
+Only variables prefixed with `VITE_` are exposed to the client by Vite.
+
+```env
+VITE_APP_NAME="React Enterprise Starter"
+VITE_API_BASE_URL="http://localhost:3000/api"
+```
+
+Never commit real secrets to the repository.
+
+## Component Guidelines
+
+- Put generic primitives in `src/components/ui`
+- Put shared app components in `src/components/common`
+- Put feature-specific components inside the related feature
+- Use TypeScript interfaces for props
+- Support `className` for customization
+- Use `React.forwardRef` for form controls and button-like primitives when useful
+- Keep components accessible by default
+
+## Feature Guidelines
+
+Each feature should own its implementation:
+
+```txt
+features/users/
+  api/
+  components/
+  constants/
+  hooks/
+  pages/
+  schemas/
+  stores/
+  utils/
+  index.ts
+  types.ts
+```
+
+Only expose public contracts from `features/[feature]/index.ts`.
+
+## Quality Gates
+
+Before shipping changes:
+
+```bash
+npm run lint
+npm run build
+```
+
+Both commands should pass.

@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 
 import type { AuthUser } from '../types'
+import { clearAccessToken } from '../utils/auth-token'
 
 type AuthSession = {
   user: AuthUser
@@ -18,5 +19,8 @@ export const useAuthStore = create<AuthState>((set) => ({
   user: null,
   accessToken: null,
   setSession: (session) => set(session),
-  logout: () => set({ user: null, accessToken: null }),
+  logout: () => {
+    clearAccessToken()
+    set({ user: null, accessToken: null })
+  },
 }))

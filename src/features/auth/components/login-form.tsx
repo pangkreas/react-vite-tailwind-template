@@ -1,7 +1,7 @@
 import type { FormEvent } from 'react'
 import { useState } from 'react'
 
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui'
 
 import { useLogin } from '../hooks/use-login'
 import { validateLogin } from '../schemas/login-schema'

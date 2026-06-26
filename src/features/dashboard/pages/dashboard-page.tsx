@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button'
-import { formatCurrency } from '@/utils/format-currency'
+import { Button } from '@/components/ui'
+import { formatCurrency } from '@/utils/formatCurrency'
 
 import { DashboardHero } from '../components/dashboard-hero'
 import { useDashboardCounter } from '../hooks/use-dashboard-counter'

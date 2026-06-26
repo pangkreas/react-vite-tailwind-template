@@ -1,6 +1,8 @@
 import { Link, Outlet } from 'react-router-dom'
 
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui'
+import { APP_NAME } from '@/constants/app'
+import { ROUTES } from '@/constants/routes'
 import { useAuthStore } from '@/features/auth'
 
 import './app-layout.css'
@@ -12,11 +14,11 @@ export function AppLayout() {
   return (
     <div className="app-shell">
       <aside className="app-sidebar">
-        <Link className="app-brand" to="/dashboard">
-          Enterprise UI
+        <Link className="app-brand" to={ROUTES.dashboard}>
+          {APP_NAME}
         </Link>
         <nav className="app-nav" aria-label="Primary navigation">
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to={ROUTES.dashboard}>Dashboard</Link>
         </nav>
       </aside>
 

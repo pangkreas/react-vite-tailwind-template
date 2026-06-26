@@ -1,5 +1,6 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 
+import { ROUTES } from '@/constants/routes'
 import { useAuthStore } from '@/features/auth'
 
 export function ProtectedRoute() {
@@ -7,7 +8,7 @@ export function ProtectedRoute() {
   const user = useAuthStore((state) => state.user)
 
   if (!user) {
-    return <Navigate to="/login" replace state={{ from: location }} />
+    return <Navigate to={ROUTES.login} replace state={{ from: location }} />
   }
 
   return <Outlet />

@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 :root {
   --text: #5f6673;
   --text-h: #101828;
@@ -118,10 +120,4 @@ code {
 
 .btn:hover {
   border-color: var(--accent-border);
-}
-
-.loading-screen {
-  min-height: 100svh;
-  display: grid;
-  place-items: center;
 }

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
+import { ROUTES } from '@/constants/routes'
 import { useMutation } from '@/lib/query'
 
 import { login } from '../api/auth-api'
@@ -16,7 +17,7 @@ export function useLogin() {
     onSuccess: (session) => {
       saveAccessToken(session.accessToken)
       setSession(session)
-      navigate('/dashboard', { replace: true })
+      navigate(ROUTES.dashboard, { replace: true })
     },
   })
 }

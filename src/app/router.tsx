@@ -4,19 +4,20 @@ import { LoginPage } from '@/features/auth'
 import { DashboardPage } from '@/features/dashboard'
 import { AppLayout } from '@/layouts/app-layout'
 import { AuthLayout } from '@/layouts/auth-layout'
+import { ROUTES } from '@/constants/routes'
 
 import { ProtectedRoute } from './routes/protected-route'
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Navigate to="/dashboard" replace />,
+    path: ROUTES.home,
+    element: <Navigate to={ROUTES.dashboard} replace />,
   },
   {
     element: <AuthLayout />,
     children: [
       {
-        path: '/login',
+        path: ROUTES.login,
         element: <LoginPage />,
       },
     ],
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
         element: <AppLayout />,
         children: [
           {
-            path: '/dashboard',
+            path: ROUTES.dashboard,
             element: <DashboardPage />,
           },
         ],
