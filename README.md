@@ -1,6 +1,12 @@
-# React Vite Enterprise Starter
+# __APP_NAME__
 
-Starter template for building scalable React applications with a feature-based modular architecture.
+__APP_DESCRIPTION__
+
+This project was generated from the React Vite Enterprise Starter template.
+
+## Template Placeholders
+
+The `create-pangkreas-app` CLI replaces placeholders such as `__APP_NAME__`, `__APP_DESCRIPTION__`, `__AUTHOR__`, `__COMPANY__`, `__YEAR__`, and `__VERSION__` after cloning this template.
 
 ## Tech Stack
 
@@ -14,9 +20,7 @@ Starter template for building scalable React applications with a feature-based m
 - Zustand
 - shadcn/ui-style component primitives
 
-## Getting Started
-
-Install dependencies:
+## Installation
 
 ```bash
 npm install
@@ -34,21 +38,12 @@ Run the development server:
 npm run dev
 ```
 
-Build for production:
+## Scripts
 
 ```bash
+npm run dev
 npm run build
-```
-
-Run lint:
-
-```bash
 npm run lint
-```
-
-Preview production build:
-
-```bash
 npm run preview
 ```
 
@@ -72,70 +67,17 @@ src/
 
 See [ARCHITECTURE.md](./ARCHITECTURE.md) for the full architecture rules.
 
-## Architecture Principles
-
-- Feature-based modular architecture
-- Clean Architecture-inspired boundaries
-- Low coupling and high cohesion
-- Public API exports through `index.ts`
-- React Query for server state
-- Zustand for client state
-- Axios instance centralized in `src/lib/axios.ts`
-- Shared primitives in `src/components/ui`
-- Feature-specific code stays inside `src/features`
-
-## Import Alias
-
-Use the `@/` alias for source imports:
-
-```ts
-import { Button } from '@/components/ui'
-import { ROUTES } from '@/constants/routes'
-import { apiClient } from '@/lib/axios'
-```
-
-Avoid deep relative imports across modules.
-
 ## Environment Variables
 
 Only variables prefixed with `VITE_` are exposed to the client by Vite.
 
 ```env
-VITE_APP_NAME="React Enterprise Starter"
+VITE_APP_NAME="__APP_NAME__"
+VITE_APP_DESCRIPTION="__APP_DESCRIPTION__"
 VITE_API_BASE_URL="http://localhost:3000/api"
 ```
 
 Never commit real secrets to the repository.
-
-## Component Guidelines
-
-- Put generic primitives in `src/components/ui`
-- Put shared app components in `src/components/common`
-- Put feature-specific components inside the related feature
-- Use TypeScript interfaces for props
-- Support `className` for customization
-- Use `React.forwardRef` for form controls and button-like primitives when useful
-- Keep components accessible by default
-
-## Feature Guidelines
-
-Each feature should own its implementation:
-
-```txt
-features/users/
-  api/
-  components/
-  constants/
-  hooks/
-  pages/
-  schemas/
-  stores/
-  utils/
-  index.ts
-  types.ts
-```
-
-Only expose public contracts from `features/[feature]/index.ts`.
 
 ## Quality Gates
 
@@ -145,5 +87,3 @@ Before shipping changes:
 npm run lint
 npm run build
 ```
-
-Both commands should pass.
