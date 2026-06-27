@@ -1,7 +1,9 @@
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 
 import { LoginPage } from '@/features/auth'
+// PANGKREAS_PUBLIC_ROUTE_IMPORTS
 import { DashboardPage } from '@/features/dashboard'
+// PANGKREAS_PROTECTED_ROUTE_IMPORTS
 import { AppLayout } from '@/layouts/app-layout'
 import { AuthLayout } from '@/layouts/auth-layout'
 import { ROUTES } from '@/constants/routes'
@@ -20,6 +22,7 @@ const router = createBrowserRouter([
         path: ROUTES.login,
         element: <LoginPage />,
       },
+      // PANGKREAS_PUBLIC_ROUTES
     ],
   },
   {
@@ -32,6 +35,7 @@ const router = createBrowserRouter([
             path: ROUTES.dashboard,
             element: <DashboardPage />,
           },
+          // PANGKREAS_PROTECTED_ROUTES
         ],
       },
     ],

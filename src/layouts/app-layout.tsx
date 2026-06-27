@@ -19,6 +19,7 @@ export function AppLayout() {
         </Link>
         <nav className="app-nav" aria-label="Primary navigation">
           <Link to={ROUTES.dashboard}>Dashboard</Link>
+          {/* PANGKREAS_SIDEBAR_MENUS */}
         </nav>
       </aside>
 
